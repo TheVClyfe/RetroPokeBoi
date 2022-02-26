@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import com.vclyfe.experiment.retrofitboi.api.ApiServiceImpl
 import com.vclyfe.experiment.retrofitboi.databinding.ActivityMainBinding
+import com.vclyfe.experiment.retrofitboi.model.PokemonDetailsModel
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,15 +25,34 @@ class MainActivity : AppCompatActivity() {
         binding.searchView.setOnQueryTextListener(
             object: SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
-                    Toast.makeText(this@MainActivity, "You searched for $query!", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this@MainActivity, "You searched for $query!", Toast.LENGTH_SHORT).show()
+                    query?.let {
+                        ApiServiceImpl().getPokemonDetails(it)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe({ response ->
+                                    onSuccess(response)
+                                },
+                                { error ->
+                                    onError(error)
+                                }
+                            )
+                    }
                     return true
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
                     return true
                 }
-
             }
         )
+    }
+
+    private fun onSuccess(response: PokemonDetailsModel) {
+        Toast.makeText(this, response.toString(), Toast.LENGTH_LONG).show()
+    }
+
+    private fun onError(error: Throwable) {
+        Toast.makeText(this, "$error - failed to get result!", Toast.LENGTH_LONG).show()
     }
 }

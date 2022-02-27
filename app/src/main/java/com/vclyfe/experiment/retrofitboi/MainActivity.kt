@@ -46,6 +46,19 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         )
+
+        binding.fab.setOnClickListener {
+            ApiServiceImpl().getPokemonList(limit = binding.limit.text.toString(), offset = binding.offset.text.toString())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ response ->
+                    Toast.makeText(this, response.results.toString(), Toast.LENGTH_LONG).show()
+                },
+                    { error ->
+                        onError(error)
+                    }
+                )
+        }
     }
 
     private fun onSuccess(response: PokemonDetailsModel) {

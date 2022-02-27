@@ -28,13 +28,55 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchTextLabel"/>
 
+    <EditText
+        android:inputType="text"
+        android:background="@color/white"
+        android:id="@+id/offset"
+        android:layout_margin="16dp"
+        android:padding="8dp"
+        android:hint="Enter offset here"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:maxLines="1"
+        app:layout_constraintTop_toBottomOf="@id/searchView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:inputType="text"
+        android:background="@color/white"
+        android:id="@+id/limit"
+        android:layout_margin="16dp"
+        android:padding="8dp"
+        android:hint="Enter limit here"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:maxLines="1"
+        app:layout_constraintTop_toBottomOf="@id/offset"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        android:importantForAutofill="no" />
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/searchView"
+        app:layout_constraintTop_toBottomOf="@id/limit"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:contentDescription="FAB"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:src="@drawable/ic_outline_play_arrow_24"
+        android:layout_margin="20dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

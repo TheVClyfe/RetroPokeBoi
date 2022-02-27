@@ -1,6 +1,7 @@
 package com.vclyfe.experiment.retrofitboi.api
 
 import com.vclyfe.experiment.retrofitboi.model.PokemonDetailsModel
+import com.vclyfe.experiment.retrofitboi.model.PokemonListResponse
 import io.reactivex.rxjava3.core.Single
 
 class ApiServiceImpl: ApiServiceRepository {
@@ -10,5 +11,9 @@ class ApiServiceImpl: ApiServiceRepository {
 
     override fun getPokemonDetails(pokemonName: String): Single<PokemonDetailsModel> {
         return apiService.getPokemonDetails(pokemonName)
+    }
+
+    override fun getPokemonList(limit: String?, offset: String?): Single<PokemonListResponse> {
+        return apiService.getPokemonList(offset, limit)
     }
 }

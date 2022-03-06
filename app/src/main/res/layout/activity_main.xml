@@ -79,4 +79,14 @@
         android:layout_width="60dp"
         android:layout_height="60dp" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/nextFab"
+        android:contentDescription="Next FAB"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:src="@drawable/ic_baseline_skip_next_24"
+        android:layout_margin="20dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,8 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Deroz/AndroidStudioProjects/RetrofitBoi/app/src/main/res/drawable/ic_outline_play_arrow_24.xml" value="0.31979166666666664" />
-        <entry key="..\:/Users/Deroz/AndroidStudioProjects/RetrofitBoi/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/Deroz/AndroidStudioProjects/RetrofitBoi/app/src/main/res/layout/activity_holder.xml" value="0.2994791666666667" />
+        <entry key="..\:/Users/Deroz/AndroidStudioProjects/RetrofitBoi/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Deroz/AndroidStudioProjects/RetrofitBoi/app/src/main/res/layout/activity_second.xml" value="0.18072916666666666" />
+        <entry key="..\:/Users/Deroz/AndroidStudioProjects/RetrofitBoi/app/src/main/res/layout/fragment_first.xml" value="0.2994791666666667" />
+        <entry key="..\:/Users/Deroz/AndroidStudioProjects/RetrofitBoi/app/src/main/res/layout/item_pokemon_list.xml" value="0.2980072463768116" />
       </map>
     </option>
   </component>

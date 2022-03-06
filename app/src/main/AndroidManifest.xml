@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RetrofitBoi">
         <activity
+            android:name=".HolderActivity"
+            android:exported="false" />
+        <activity
             android:name=".SecondActivity"
             android:exported="false" />
         <activity

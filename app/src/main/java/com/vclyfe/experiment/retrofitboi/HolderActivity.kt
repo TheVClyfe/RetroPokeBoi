@@ -1,68 +1,75 @@
 package com.vclyfe.experiment.retrofitboi
 
 import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
-import com.vclyfe.experiment.retrofitboi.databinding.ActivitySecondBinding
+import androidx.fragment.app.commit
+import com.vclyfe.experiment.retrofitboi.databinding.ActivityHolderBinding
 
-class SecondActivity : AppCompatActivity() {
+class HolderActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityHolderBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("LifecycleTag", "onCreate2 called!")
-        val binding = ActivitySecondBinding.inflate(layoutInflater)
+        Log.d("HolderTag", "onCreate Holder called!")
+        binding = ActivityHolderBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        binding.secondActivityButton.setOnClickListener {
-            val intent = Intent(this, HolderActivity::class.java)
-            startActivity(intent)
+        initFragment()
+    }
+
+    private fun initFragment() {
+        supportFragmentManager.commit {
+            add(binding.fragmentContainer.id, FirstFragment.newInstance())
+            addToBackStack(null)
         }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        Log.d("LifecycleTag", "onSaveInstanceState2 called!")
+        Log.d("HolderTag", "onSaveInstanceState Holder called!")
         super.onSaveInstanceState(outState)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        Log.d("LifecycleTag", "onRestoreInstanceState2 called!")
+        Log.d("HolderTag", "onRestoreInstanceState Holder called!")
         super.onRestoreInstanceState(savedInstanceState)
     }
 
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
-        Log.d("LifecycleTag", "onCreateView2 called!")
+        Log.d("HolderTag", "onCreateView Holder called!")
         return super.onCreateView(name, context, attrs)
     }
 
     override fun onDestroy() {
-        Log.d("LifecycleTag", "onDestroy2 called!")
+        Log.d("HolderTag", "onDestroy Holder called!")
         super.onDestroy()
     }
 
     override fun onStop() {
-        Log.d("LifecycleTag", "onStop2 called!")
+        Log.d("HolderTag", "onStop Holder called!")
         super.onStop()
     }
 
     override fun onResume() {
-        Log.d("LifecycleTag", "onResume2 called!")
+        Log.d("HolderTag", "onResume Holder called!")
         super.onResume()
     }
 
     override fun onPause() {
-        Log.d("LifecycleTag", "onPause2 called!")
+        Log.d("HolderTag", "onPause Holder called!")
         super.onPause()
     }
 
     override fun onRestart() {
-        Log.d("LifecycleTag", "onRestart2 called!")
+        Log.d("HolderTag", "onRestart Holder called!")
         super.onRestart()
     }
 
     override fun onStart() {
-        Log.d("LifecycleTag", "onStart2 called!")
+        Log.d("HolderTag", "onStart Holder called!")
         super.onStart()
     }
 }

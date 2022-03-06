@@ -2,17 +2,19 @@ package com.vclyfe.experiment.retrofitboi
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.vclyfe.experiment.retrofitboi.api.ApiServiceImpl
+import com.vclyfe.experiment.retrofitboi.components.PokemonListAdapter
 import com.vclyfe.experiment.retrofitboi.databinding.ActivityMainBinding
 import com.vclyfe.experiment.retrofitboi.model.PokemonDetailsModel
+import com.vclyfe.experiment.retrofitboi.model.PokemonListData
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
@@ -21,6 +23,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var stringYolo: String
+
+    private lateinit var linearLayoutManager: LinearLayoutManager
+
+    private lateinit var recyclerAdapter: PokemonListAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("LifecycleTag", "onCreate called!")
@@ -76,7 +83,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        stringYolo = "NiteshSir"
         binding.searchView.setOnQueryTextListener(
             object: SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
@@ -103,19 +109,33 @@ class MainActivity : AppCompatActivity() {
         )
 
         binding.fab.setOnClickListener {
-            /*ApiServiceImpl().getPokemonList(limit = binding.limit.text.toString(), offset = binding.offset.text.toString())
+            ApiServiceImpl().getPokemonList(limit = binding.limit.text.toString(), offset = binding.offset.text.toString())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response ->
                     Toast.makeText(this, response.results.toString(), Toast.LENGTH_LONG).show()
+                    showWithinRecyclerView(response.results)
                 },
                     { error ->
                         onError(error)
                     }
-                )*/
+                )
+
+        }
+
+        binding.nextFab.setOnClickListener {
             val intent = Intent(this, SecondActivity::class.java)
             startActivity(intent)
         }
+
+        linearLayoutManager = LinearLayoutManager(this)
+        binding.recyclerView.layoutManager = linearLayoutManager
+        recyclerAdapter = PokemonListAdapter(this)
+        binding.recyclerView.adapter = recyclerAdapter
+    }
+
+    private fun showWithinRecyclerView(results: List<PokemonListData>) {
+        recyclerAdapter.addToPokemonList(results)
     }
 
     private fun onSuccess(response: PokemonDetailsModel) {
